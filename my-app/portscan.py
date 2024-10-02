@@ -8,7 +8,11 @@
 #            pacotes de rede e identificar padrões suspeitos, como múltiplas    #
 #            tentativas de conexão a diferentes portas em um curto intervalo    #
 #            de tempo.                                                          #
+# Versão Script: v.1.0                                                          #
 #                                                                               #
+# Versão Python: 3.12.7                                                         #
+#                                                                               #
+# Versão Scapy: 2.5.0 release                                                   #
 #################################################################################
 
 import os
