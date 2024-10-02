@@ -1,4 +1,15 @@
-# https://npcap.com/#download
+#################################################################################
+# Autor: Pedro Silva                                                            #
+#                                                                               #
+# Data: 01/10/2024                                                              #
+#                                                                               # 
+# Descrição: Este projeto irá monitorar o tráfego de rede e detectar tentativas #
+#            de port scanning. O código usa a biblioteca Scapy para capturar    #
+#            pacotes de rede e identificar padrões suspeitos, como múltiplas    #
+#            tentativas de conexão a diferentes portas em um curto intervalo    #
+#            de tempo.                                                          #
+#                                                                               #
+#################################################################################
 
 import os
 import logging
@@ -87,7 +98,7 @@ def detect_port_scan(pkt):
 
                         print(log_message_termnal)
                         logging.info(log_message)
-            # enviar_email_alerta(src_ip, [port for port, t in scan_attempts[src_ip]])  # Envia alerta por e-mail
+                        enviar_email_alerta(src_ip, [port for port, t in scan_attempts[src_ip]])  # Envia alerta por e-mail
 
 # Função para enviar o e-mail de alerta
 def enviar_email_alerta(ip_suspeito, portas):
@@ -132,7 +143,6 @@ def bloquear_ip(ip_suspeito, sistema_operacional):
     print(f"IP {ip_suspeito} bloqueado.")
 
 def cabecalho():
-    #print(os.getenv("ROXO") + titulo + os.getenv("RESET"))
     print(ROXO + titulo + RESET)
     print(divider)
 
