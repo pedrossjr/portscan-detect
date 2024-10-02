@@ -26,7 +26,7 @@
 
 #### Para executar o script, faça conforme abaixo:
 
-#### python portscan.py
+#### pedro@desktop:~$ python portscan.py
 
 #### O sistema perguntará por quantos minutos se deseja realizar a análise. Informe um número inteiro que representará a quantidade de minutos que o script será executado, após X minutos executando, o sistema exibirá a informação "Scanner finalizado".
 
