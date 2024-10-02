@@ -59,7 +59,7 @@ logging.basicConfig(filename='port_scan_logs.txt', level=logging.INFO, format='%
 scan_attempts = defaultdict(list)
 
 # Função para processar cada pacote capturado
-def detect_port_scan(pkt):
+def detecta_portscan(pkt):
     if IP in pkt and TCP in pkt:
         src_ip = pkt[IP].src
         
@@ -176,6 +176,6 @@ tempo_em_segundos = tempo_em_minutos * 60
 
 # Capturando pacotes na interface de rede (ex: 'eth0' no Linux ou 'Wi-Fi' no Windows)
 print("Monitorando tentativas de port scan...")
-sniff(filter="tcp", prn=detect_port_scan, timeout=tempo_em_segundos)
+sniff(filter="tcp", prn=detecta_portscan, timeout=tempo_em_segundos)
 
 print("Scanner finalizado.")
