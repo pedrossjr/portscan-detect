@@ -50,7 +50,7 @@ TIME_WINDOW = 10 # segundos
 THRESHOLD = 10   # número de portas diferentes em um curto período
 
 # Lista de IPs a serem ignorados
-ips_ignorados = ['192.168.3.176']
+ips_ignorados = []
 
 # Configura o arquivo de log
 logging.basicConfig(filename='port_scan_logs.txt', level=logging.INFO, format='%(asctime)s - %(message)s')
@@ -102,7 +102,7 @@ def detect_port_scan(pkt):
 
                         print(log_message_termnal)
                         logging.info(log_message)
-                        enviar_email_alerta(src_ip, [port for port, t in scan_attempts[src_ip]])  # Envia alerta por e-mail
+                        # enviar_email_alerta(src_ip, [port for port, t in scan_attempts[src_ip]])  # Envia alerta por e-mail
 
 # Função para enviar o e-mail de alerta
 def enviar_email_alerta(ip_suspeito, portas):
