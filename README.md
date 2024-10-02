@@ -25,3 +25,7 @@
 #### python portscan.py
 
 #### O sistema perguntará por quantos minutos se deseja realizar a análise. Informe um número inteiro que representará a quantidade de minutos que o script será executado, após X minutos executando, o sistema exibirá a informação "Scanner finalizado".
+
+### Observação para o envio de e-mail
+
+#### Caso não queira enviar o e-mail da análise, apenas comente o código aproximadamente na linha 105 onde há a chamada da função enviar_email_alerta(src_ip, [port for port, t in scan_attempts[src_ip]])
