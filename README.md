@@ -8,7 +8,7 @@
 
 #### Para utilização da biblioteca Scapy, utilize o comando conforme abaixo:
 
-#### pip install scapy
+#### pedro@desktop:~$ pip install scapy
 
 ### Observação
 
