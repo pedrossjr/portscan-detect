@@ -6,6 +6,8 @@
 
 ### Instalação da biblioteca Scapy
 
+#### Para utilização da biblioteca Scapy, utilize o comando conforme abaixo:
+
 #### pip install scapy
 
 ### Observação
