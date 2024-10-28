@@ -1,19 +1,20 @@
-#################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Autor: Pedro Silva                                                            #
 #                                                                               #
 # Data: 01/10/2024                                                              #
+# Última atualização: 28/10/2024                                                #
 #                                                                               # 
 # Descrição: Este projeto irá monitorar o tráfego de rede e detectar tentativas #
 #            de port scanning. O código usa a biblioteca Scapy para capturar    #
 #            pacotes de rede e identificar padrões suspeitos, como múltiplas    #
 #            tentativas de conexão a diferentes portas em um curto intervalo    #
 #            de tempo.                                                          #
-# Versão Script: v.1.0                                                          #
+# Versão Script: v.1.1                                                          #
 #                                                                               #
 # Versão Python: 3.12.7                                                         #
 #                                                                               #
 # Versão Scapy: 2.5.0 release                                                   #
-#################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 import os
 import logging
@@ -25,16 +26,20 @@ from scapy.all import *
 from scapy.all import sniff
 from collections import defaultdict
 from dotenv import load_dotenv
+import requests
 import platform
 
-# Verifica Sistema Operacional
+# Verifica Sistema Operacional.
 sistema_operacional = platform.system()
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
 # Realiza a limpeza do prompt
-os.system('cls')
+if sistema_operacional == "Linux":
+    os.system('cls')
+elif sistema_operacional == "Windows":
+    os.system('clear')
 
 # Definição de cores das variáveis.
 AMARELO="\033[93m"
@@ -95,7 +100,9 @@ def detecta_portscan(pkt):
                         log_message_termnal = CIANO + f"Possivel port scan detectado do IP externo: " + RESET
                         log_message_termnal += f"{ip} - "
                         log_message_termnal += VERDE + "Porta: " + RESET
-                        log_message_termnal += f"{port}"
+                        log_message_termnal += f"{port} - "
+                        log_message_termnal += VERDE + "Localização: " + RESET
+                        log_message_termnal += " - " + get_ip_location(ip)
 
                         # Escreve cada detecção de port scan no arquivo de log
                         log_message = f"Possivel port scan detectado do IP externo {ip} na porta: {port}"
@@ -145,6 +152,18 @@ def bloquear_ip(ip_suspeito, sistema_operacional):
     comando = f"sudo iptables -A INPUT -s {ip_suspeito} -j DROP"
     os.system(comando)
     print(f"IP {ip_suspeito} bloqueado.")
+
+def get_ip_location(ip):
+    try:
+        response = requests.get(f"https://ipinfo.io/{ip}/json")
+        data = response.json()
+        city = data.get("city")
+        region = data.get("region")
+        country = data.get("country")
+        org = data.get("org")
+        return city + " - " + region + " - " + country + " - " + org if country else "Não identificada"
+    except Exception as e:
+        return f"Error retrieving location: {e}"
 
 def cabecalho():
     print(ROXO + titulo + RESET)
