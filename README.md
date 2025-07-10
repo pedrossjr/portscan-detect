@@ -2,7 +2,7 @@
 
 ### Detector de Port Scanning com Python
 
-#### Este projeto irá monitorar o tráfego de rede e detectar tentativas de port scanning. O código usa a biblioteca Scapy para capturar pacotes de rede e identificar padrões suspeitos, como múltiplas tentativas de conexão a diferentes portas em um curto intervalo de tempo.
+#### Este projeto irá monitorar o tráfego de rede e detectar tentativas suspeitas de port scanning. O código usa a biblioteca Scapy para capturar pacotes de rede e identificar padrões suspeitos, como múltiplas tentativas de conexão a diferentes portas em um curto intervalo de tempo.
 
 ### Instalação da biblioteca Scapy
 
